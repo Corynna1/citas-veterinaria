@@ -1,0 +1,4 @@
+/*son paquetes de tailwind que me ayudan a proveer los estilos*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
