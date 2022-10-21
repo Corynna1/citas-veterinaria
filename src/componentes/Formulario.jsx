@@ -1,13 +1,20 @@
 import { useState, useEffect } from 'react'
 import Error from './Error';
+//import Paciente from './Paciente';
 
-function Formulario() {
+function Formulario({pacientes,setPacientes, paciente, setpaciente}) {
   const [mascota, setmascota] = useState('');
   const [propietario, setpropietario] = useState('');
   const [email, setemail] = useState('');
   const [alta, setalta] = useState('');
   const [sintomas, setsintomas] = useState('');
   const [error,setError]= useState(false)
+  const generarId=()=>{
+    const random=Math.random().toString(36)
+    const fecha=Date.now().toString(36)
+    return random+fecha
+  }
+
   
   const validarFormulario= (e)=>{ e.preventDefault()
   if([mascota, propietario, alta, sintomas, email].includes('')){
@@ -16,12 +23,21 @@ function Formulario() {
     return
   }; 
   setError(false)
+  const objetoPaciente={mascota,propietario, email, alta, sintomas}
+  if(paciente.id){
+  }
+  else{objetoPaciente.id=generarId()
+  
+  setPacientes([...pacientes,objetoPaciente])}
+
+
   //limpiando nuestros campos o inputs
   setmascota('')
   setpropietario('')
   setemail('')
   setalta('')
   setsintomas('')
+  
 
   };
 
@@ -58,7 +74,7 @@ function Formulario() {
           <div>
             <label className="block text-gray-700 uppercase font-bold mt-2">Email</label>
             <input className="p-2 rounded-md w-full mt-2 placeholder-gray-500"
-              type="text"
+              type="email"
               placeholder=" Email"
               value={email}
               onChange={(e)=>setemail(e.target.value) }
@@ -67,7 +83,7 @@ function Formulario() {
           <div>
             <label className="block text-gray-700 uppercase font-bold mt-2">Alta</label>
             <input className="p-2 rounded-md w-full mt-2 placeholder-gray-500"
-              type="text"
+              type="date"
               placeholder=" Alta"
               value={alta}
               onChange={(e)=>setalta(e.target.value) }
@@ -75,15 +91,14 @@ function Formulario() {
           </div>
           <div>
             <label className="block text-gray-700 uppercase font-bold mt-2">Sintomas</label>
-            <input className="p-2 rounded-md w-full mt-2 placeholder-gray-500"
-              type="text"
+            <textarea className="p-2 rounded-md w-full mt-2 placeholder-gray-500"
               placeholder=" Sintomas"
               value={sintomas}
               onChange={(e)=>setsintomas(e.target.value) }
             />
           </div>
         </div>
-        <input type="submit" className='bg-indigo-600 text-white uppercase w-full p-3 mt-5 rounded-md hover:bg-indigo-700 cursor-pointer transition-colors' />
+        <input type="submit" className='bg-indigo-600 text-white uppercase w-full p-3 mt-5 rounded-md hover:bg-indigo-700 cursor-pointer transition-colors' value={'Agregr Paciente'} />
       </form >
 
     </div >

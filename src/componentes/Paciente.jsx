@@ -1,11 +1,29 @@
-function Paciente(){
+
+
+function Paciente({paciente, eliminarPaciente, setPaciente}){
+    const{mascota,propietario,email,alta,sintomas}=paciente
+    const eliminarFormulario=()=>{const respuesta=confirm('Estas segura de eliminar el paciente?')
+    if(respuesta){
+        eliminarPaciente(id)
+    }}
     return(
-        <div className="mt-3 py-10 rounded-xl bg-slate-300 shadown-md px-5">
-                <p className="font-bold mb-3 text-gray-700 ">Mascota: <span>Gordis</span></p>
-                <p className="font-bold mb-3 text-gray-700 ">Propietario: <span>Corynna</span></p>
-                <p className="font-bold mb-3 text-gray-700 ">Email: <span>coryehn@gmail.com</span></p>
-                <p className="font-bold mb-3 text-gray-700 ">Alta: <span> si</span></p>
-                <p className="font-bold mb-3 text-gray-700 ">Sintomas: <span>Vomito , lesion en brazo izquierdo</span></p>
+        <div className="bg-slate-300 shadow-md     px-5 mx-5 rounded-md ">
+            <p className=" font-bold text-gray-700 uppercase">Nombre-Mascota: <span className="font-normal normal-case ">{mascota}</span></p>
+            <p className=" font-bold text-gray-700 uppercase">Propietario: <span className="font-normal normal-case ">{propietario}</span></p>
+            <p className=" font-bold text-gray-700 uppercase">Email: <span className="font-normal normal-case ">{email}</span></p>
+            <p className=" font-bold text-gray-700 uppercase">Alta: <span className="font-normal normal-case ">{alta}</span></p>
+            <p className=" font-bold text-gray-700 uppercase">Sintomas: <span className="font-normal normal-case ">{sintomas}</span></p>
+            <div className="flex justify-between mt-10 "> <button 
+            type="button "
+            className="bg-indigo-600 hover:bg-indigo-700 text-white px-10 uppercase rounded-lg"
+            onClick={()=>setPaciente(paciente)}> 
+            Editar</button>
+            <button 
+            type="button "
+            className="bg-red-600 hover:bg-red-700 text-white px-10 uppercase rounded-lg"
+            onClick={eliminarFormulario}> 
+            Eliminar</button>
+             </div>
         </div>
     )
 }
